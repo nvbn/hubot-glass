@@ -67,8 +67,8 @@ class HubotClient(val url: String) : AnkoLogger {
     fun getResponses() = authorised.bind { user ->
         Fuel.get("$url/polling/response/$user/")
                 .jsonPromise()
-                .fail { warn("Can't get messages: $it") }
+                .fail { warn("Can't get responses: $it") }
                 .success { info("Got responses: $it") }
-                .then { it.getJSONArray("messages").asStringList() }
+                .then { it.getJSONArray("responses").asStringList() }
     }
 }

@@ -35,7 +35,7 @@ class Polling extends hubot.Adapter
     @robot.router.get '/polling/response/:user/', (req, res) =>
       ### Returns new responses to user. ###
       user = req.params.user
-      res.json 'messages': @responses[user] || []
+      res.json 'responses': @responses[user] || []
       @responses[user] = []
 
     @emit "connected"
