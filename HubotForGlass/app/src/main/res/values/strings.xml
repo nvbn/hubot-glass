@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">HubotForGlass</string>
+    <string name="hubot_prompt">Say to hubot</string>
+    <string name="hubot_trigger">hubot,</string>
+</resources>

@@ -1,0 +1,12 @@
+{
+  "name": "hubot-polling",
+  "version": "1.0.0",
+  "description": "",
+  "main": "./index",
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "coffee-script": "^1.10.0",
+    "parent-require": "^1.0.0"
+  }
+}
