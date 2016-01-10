@@ -2,9 +2,9 @@ package com.nvbn.hubotforglass
 
 import android.app.Activity
 import android.view.Menu
-import org.jetbrains.anko.*
+import org.jetbrains.anko.intentFor
 
-class MenuActivity: Activity(), AnkoLogger {
+class MenuActivity: Activity() {
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         openOptionsMenu()
