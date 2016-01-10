@@ -18,7 +18,7 @@ import org.json.JSONObject
 /**
  * Wraps json response in promise.
  */
-public fun Request.jsonPromise(): Promise<JSONObject, Exception> {
+fun Request.jsonPromise(): Promise<JSONObject, Exception> {
     val response = deferred<JSONObject, Exception>()
     responseJson { req, res, result ->
         when (result) {
@@ -32,7 +32,7 @@ public fun Request.jsonPromise(): Promise<JSONObject, Exception> {
 /**
  * Converts `JSONArray` to `List<String>`
  */
-public fun JSONArray.asStringList() = if (length() == 0) {
+fun JSONArray.asStringList() = if (length() == 0) {
     listOf()
 } else {
     (0..(length() - 1)).map { getString(it) }
