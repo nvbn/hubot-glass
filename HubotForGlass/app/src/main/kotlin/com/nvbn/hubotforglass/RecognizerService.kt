@@ -7,6 +7,7 @@ import android.os.IBinder
 import android.speech.RecognizerIntent
 import com.google.android.glass.timeline.LiveCard
 import com.google.android.glass.widget.CardBuilder
+import nl.komponents.kovenant.Promise
 import nl.komponents.kovenant.android.startKovenant
 import nl.komponents.kovenant.android.stopKovenant
 import org.jetbrains.anko.AnkoLogger
@@ -30,15 +31,20 @@ class RecognizerService : Service(), AnkoLogger {
     /**
      * Polls responses from hubot.
      */
-    fun checkResponses() {
+    tailrec fun checkResponses(previous: Promise<Any?, Any?>?) {
         info("Check responses")
-        client.getResponses().success {
-            info("Got responses $it")
-            if (it.count() > 0) showResponse(it.joinToString(","))
-            Thread.sleep(1000)
-            checkResponses()
+        if (previous == null || previous.isDone()) {
+            val responses = client.getResponses().success {
+                if (it.count() > 0) showResponse(it.joinToString(","))
+            }
+            checkResponses(responses)
+        } else {
+            Thread.sleep(500)
+            checkResponses(previous)
         }
     }
+
+    fun checkResponses() = checkResponses(null)
 
     override fun onCreate() {
         super.onCreate()
